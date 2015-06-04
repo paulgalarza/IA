@@ -1,0 +1,9 @@
+.card{
+  overflow: visible;
+}
+.mt-lg{
+    margin-top: 40px;
+}
+.dropdown-content{
+  z-index: 100;
+}

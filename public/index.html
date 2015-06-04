@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="es" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>CODETutorial Mean seed</title>
+  <link rel="stylesheet" href="bower_components/materialize/dist/css/materialize.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <script src="bower_components/socket.io-client/socket.io.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-socket-io/socket.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/materialize/dist/js/materialize.js"></script>
+
+  <script type="text/javascript" src="js/app.js"></script>
+
+  <div class="container" ng-controller="ArduController">
+
+    <h1 class="header center orange-text">Empandas</h1>
+    
+    <div class="row home">
+      <div class="col s12 m6 offset-m3">
+        <div class="card white">
+          <form  ng-submit="addBatch(quantity,flavor)" novalidate name="batchForm">
+            <div class="card-content">
+              <span class="card-title teal-text text-lighten-2">Producción</span>
+              <div class="col s12">
+                <div class="row mt-lg">
+                  <div class="input-field col s12 teal-text">
+                    <input id="number" type="text" class="validate" required ng-model="quantity" autofocus="autofocus" type="number">
+                    <label for="number">Numero de empanadas</label>
+                  </div>
+                  <div class="input-field col s12 teal-text">
+                    <select ng-model="flavor" required>
+                      <option value="" disabled selected>Selecciona un sabor</option>
+                      <option value="1">Fresa</option>
+                      <option value="2">Cajeta</option>
+                      <option value="3">Piña</option>
+                    </select>
+                    <label>Sabor</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-action">
+              <button class="waves-effect waves-light btn white-text" type="submit" ng-disabled="bachForm.$invalid"><i class="mdi-content-send right"></i>Enviar pedido</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m6 offset-m3">
+        <div class="card  teal lighten-1">
+          <div class="card-content white-text" style="text-align: center;">
+            <h5>Restantes: <strong>{{pies}}</strong></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="progress" ng-show="pies">
+      <div class="indeterminate"></div>
+    </div>
+
+  </div>
+
+</body>

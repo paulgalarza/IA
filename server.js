@@ -29,7 +29,7 @@ var onDosificador = 3000;
 var beforeEmpalmadora = 5800;
 var onEmpalmadora = 1000;
 var beforeFinish = 500;
-var onFinish = 4000;
+var onFinish = 10000;
 
 var validOff = function(){
   if(!pies && !working){
@@ -62,8 +62,9 @@ board.on("ready", function() {
    });
 
    sensor.on("change", function() {
-     if(pies && this.value < 500 && !working){
+     if(pies && this.value < 50 && !working){
         console.log("Iniciando proceso...");
+
         working = true;
         tortillera.off();
         setTimeout(function(){
@@ -83,8 +84,9 @@ board.on("ready", function() {
                  empalmadora.off();
                  setTimeout(function(){
                    banda.on();
-                   tortillera.on();
                    pies = pies - 1;
+                   if(pies)
+                    tortillera.on();
                    console.log('Restantes: ',pies);
                    io.sockets.emit('broadcast', {
                       quantity: pies
@@ -112,6 +114,9 @@ io.on('connection', function (socket) {
      console.log(pies);
      console.log(data);
      pies = pies-(-data);
+     io.sockets.emit('broadcast', {
+        quantity: pies
+      });
    });
 
    socket.on('led:off', function (data) {
@@ -120,6 +125,9 @@ io.on('connection', function (socket) {
      banda.off();
      empalmadora.off();
      dosificador.off();
+     io.sockets.emit('broadcast', {
+        quantity: pies
+      });
    });
 });
 

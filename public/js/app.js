@@ -25,8 +25,8 @@ controller('ArduController', function ($scope,mySocket) {
       idBatch += 1;
     };
 
-    $scope.cancelBatch = function(batch){
-      $scope.batches.splice(batch, 1);
+    $scope.cancel = function(batch){
+      mySocket.emit('led:off');
     };
 
     $scope.$on('socket:broadcast', function(event, data) {

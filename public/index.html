@@ -57,9 +57,14 @@
       <div class="col s12 m6 offset-m3">
         <div class="card  teal lighten-1">
           <div class="card-content white-text" style="text-align: center;">
-            <h5>Restantes: <strong>{{pies}}</strong></h5>
+            <h4><small>Restantes:</small> {{pies}}</h4>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 m6 offset-m3" style="text-align:center">
+        <a class="waves-effect red btn" style="with:100%" ng-click="cancel()"><i class="mdi-navigation-cancel right"></i>Cancelar</a>
       </div>
     </div>
     <div class="progress" ng-show="pies">
